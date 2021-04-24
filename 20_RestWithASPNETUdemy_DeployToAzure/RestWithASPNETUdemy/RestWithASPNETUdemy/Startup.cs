@@ -96,7 +96,7 @@ namespace RestWithASPNETUdemy
             
             //if (Environment.IsDevelopment())
             //{
-            //    MigrateDatabase(connection);
+                MigrateDatabase(connection);
             //}
 
             services.AddMvc(options =>

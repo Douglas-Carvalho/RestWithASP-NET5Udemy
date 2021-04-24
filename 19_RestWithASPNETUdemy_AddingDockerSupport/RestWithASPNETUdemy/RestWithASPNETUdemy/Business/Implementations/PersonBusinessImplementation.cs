@@ -36,14 +36,15 @@ namespace RestWithASPNETUdemy.Business.Implementations
             string query = @"select * from person p where 1 = 1 ";
             if (!string.IsNullOrWhiteSpace(name)) query = query + $" and p.first_name like '%{name}%' ";
             query += $" order by p.first_name {sort} limit {size} offset {offset}";
-            
+
             string countQuery = @"select count(*) from person p where 1 = 1 ";
             if (!string.IsNullOrWhiteSpace(name)) countQuery = countQuery + $" and p.first_name like '%{name}%' ";
 
             var persons = _repository.FindWithPagedSearch(query);
             int totalResults = _repository.GetCount(countQuery);
 
-            return new PagedSearchVO<PersonVO> { 
+            return new PagedSearchVO<PersonVO>
+            {
                 CurrentPage = page,
                 List = _converter.Parse(persons),
                 PageSize = size,
