@@ -55,7 +55,8 @@ namespace RestWithASPNETUdemy.Controllers
         [ProducesResponseType(401)]
         public IActionResult Get(string id)
         {
-            return Ok(episodes.Where(e => e.id == id));
+            var episode = episodes.Where(e => e.id == id).FirstOrDefault();
+            return Ok(episode);
         }
     }
 }
